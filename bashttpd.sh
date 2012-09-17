@@ -42,9 +42,9 @@ function get_content_body() {
     URL_PATH=$1
     CONTENT_TYPE=$2
     if [[ ${CONTENT_TYPE} =~ "^text" ]]; then
-        CONTENT_BODY="$( cat ${URL_PATH} )"
+        CONTENT_BODY="$( < ${URL_PATH} )"
     else
-        CONTENT_BODY="$( cat ${URL_PATH} )"
+        CONTENT_BODY="$( < ${URL_PATH} )"
     fi
 }
 
