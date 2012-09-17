@@ -69,7 +69,7 @@ fi
 
 while read line; do
     # If we've reached the end of the headers, break.
-    line=$( echo ${line} | tr -d '\r' )
+    line=$( printf '%s ' ${line} )
     if [ -z "$line" ]; then
         break
     fi
