@@ -76,7 +76,10 @@ while read line; do
 
     # Look for a GET request
     if [[ $line == GET* ]]; then
-        URL_PATH="${DOCROOT}$( echo ${line} | cut -d' ' -f2 )"
+        read ignore ignore path ignore <<< "$line"
+        unset ignore
+        URL_PATH="${DOCROOT}${path}"
+        unset path
         filter_url ${URL_PATH}
     fi
 done
