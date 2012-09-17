@@ -17,7 +17,13 @@ fi
 # Use default /var/www/html if DOCROOT is not set.
 : ${DOCROOT:=/var/www/html}
 
-DATE=$( date +"%a, %d %b %Y %H:%M:%S %Z" )
+HISTTIMEFORMAT="%a, %d %b %Y %H:%M:%S %Z"
+set -o history
+foo=$(history)
+set +o history
+DATE=$(echo ${foo%foo*})
+unset foo
+
 REPLY_HEADERS="Date: ${DATE}
 Expires: ${DATE}
 Server: Slash Bin Slash Bash"
