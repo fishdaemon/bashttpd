@@ -110,7 +110,14 @@ send() { echo "> $@" >&2;
 
 [[ $UID = 0 ]] && warn "It is not recommended to run bashttpd as root."
 
-DATE=$(date +"%a, %d %b %Y %H:%M:%S %Z")
+unset HISTFILE
+HISTTIMEFORMAT="%a, %d %b %Y %H:%M:%S %Zfoo"
+set -o history
+read foo <<< "$(history)"
+set +o history
+DATE=$(echo ${foo%%foo*})
+unset foo
+
 declare -a RESPONSE_HEADERS=(
       "Date: $DATE"
    "Expires: $DATE"
