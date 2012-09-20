@@ -76,7 +76,7 @@ while read line; do
 
     # Look for a GET request
     if [[ $line == GET* ]]; then
-        read ignore ignore path ignore <<< "$line"
+        read ignore path ignore <<< "$line"
         unset ignore
         URL_PATH="${DOCROOT}${path}"
         unset path
