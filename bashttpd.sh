@@ -17,11 +17,12 @@ fi
 # Use default /var/www/html if DOCROOT is not set.
 : ${DOCROOT:=/var/www/html}
 
-HISTTIMEFORMAT="%a, %d %b %Y %H:%M:%S %Z"
+unset HISTFILE
+HISTTIMEFORMAT="%a, %d %b %Y %H:%M:%S %Zfoo"
 set -o history
-foo=$(history)
+read foo <<< "$(history)"
 set +o history
-DATE=$(echo ${foo%foo*})
+DATE=$(echo ${foo%%foo*})
 unset foo
 
 REPLY_HEADERS="Date: ${DATE}
